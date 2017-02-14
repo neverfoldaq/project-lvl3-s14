@@ -2,7 +2,6 @@
 /* eslint-disable no-console */
 
 import fs from 'fs';
-import os from 'os';
 import nock from 'nock';
 import axios from 'axios';
 import httpAdapter from 'axios/lib/adapters/http';
@@ -17,7 +16,7 @@ test('check dowloaded file', (done) => {
     .get('/testpath')
     .reply(200, htmlbody);
   const address = 'http://localhost/testpath';
-  const tmpDir = fs.mkdtempSync("./");
+  const tmpDir = fs.mkdtempSync('./');
   console.log(`Current tmp directory for tests - ${tmpDir}`);
   pageLoader(address, tmpDir).then(() => {
     const file = fs.readFileSync(`${tmpDir}/localhost-testpath.html`, 'utf8');
